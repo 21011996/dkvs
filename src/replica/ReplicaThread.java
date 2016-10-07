@@ -471,7 +471,7 @@ public class ReplicaThread extends Thread {
 
     private void send(Message message) {
         if (!dead.containsKey(message.address) || !dead.get(message.address)) {
-            System.out.println(getStatus() + " Sending message (" + message.address + "): " + message.toBeautifulString() + "#" + output.size());
+            System.out.println(getStatus() + " Sending message (" + message.address + "): " + message.toBeautifulString());
             synchronized (output) {
                 output.add(message);
                 output.notify();
@@ -480,7 +480,6 @@ public class ReplicaThread extends Thread {
     }
 
     private String getStatus() {
-        return "[status=" + replica.getReplicaStatus() + ", state=" + replica.getReplicaState() +
-                ", viewNumber=" + replica.getViewNumber() + ", replicaNumber=" + replica.getReplicaNumber() + "]";
+        return "[Replica " + replica.getReplicaNumber() + "][" + replica.getReplicaStatus() + "," + replica.getReplicaState() + ",VIEW_NUMBER " + replica.getViewNumber() + "]";
     }
 }

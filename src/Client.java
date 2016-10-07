@@ -81,6 +81,8 @@ public class Client {
                     if (connected) {
                         requestNumber++;
                         send(output, new ClientRequest(null, Operation.CLOSE, null, null, new ArrayList<InetSocketAddress>(), requestNumber));
+                        input.close();
+                        connected = false;
                     } else {
                         System.out.println("Not connected!");
                     }
